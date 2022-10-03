@@ -2,12 +2,21 @@ package com.mbio.challenge;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import pages.BasePage;
+import utils.BaseUtils;
+
+import static utils.BaseUtils.driver;
+
 
 @SpringBootTest
-class ChallengeApplicationTests {
+class ChallengeApplicationTests extends BasePage {
+
 
 	@Test
-	void contextLoads() {
+	void validateAClassPrice() {
+		BaseUtils.launchChrome(url());
+		agreeAllCookies();
+		selectHatchbacksModel();
+		BaseUtils.closeBrowser();
 	}
-
 }
