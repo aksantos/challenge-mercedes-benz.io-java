@@ -18,6 +18,7 @@ class ChallengeApplicationTests extends BasePage {
 		selectHatchbacksModel();
 		hoverOverAClassHatchback();
 		selectBuildYourCarAClassHatchBack();
+		aClassConfigurator.waitAClassHatchbackPageFullyLoaded();
 		aClassConfigurator.selectDiesel();
 		BaseUtils.closeBrowser();
 	}

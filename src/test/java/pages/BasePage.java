@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static utils.BaseUtils.driver;
@@ -31,7 +30,6 @@ public class BasePage {
 
     public void selectBuildYourCarAClassHatchBack(){
         getInsideShadowDOM(modelShadowDOM(), buildYourCarAClassHatchback()).click();
-//        wait.until(ExpectedConditions.stalenessOf(getInsideShadowDOM(aClassConfigurator.carConfiguratorShadowDOM(),aClassConfigurator.fuelFilter())));
     }
     
     public void hoverOverElementInsideShadowDOM(By shadowDOM, By element) {
@@ -42,13 +40,13 @@ public class BasePage {
 
     // Get inside Shadow DOMs
     public WebElement getInsideShadowDOM(By shadowDOM, By element) {
+        WebElement shadowHost = driver.findElement(shadowDOM);
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
         try {
-            Thread.sleep(750);
+            Thread.sleep(800);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        WebElement shadowHost = driver.findElement(shadowDOM);
-        SearchContext shadowRoot = shadowHost.getShadowRoot();
         return shadowRoot.findElement(element);
     }
 

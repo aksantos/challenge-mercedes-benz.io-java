@@ -8,18 +8,21 @@ import static utils.BaseUtils.driver;
 
 public class AClassHatchbackPage extends BasePage{
 
+    public void waitAClassHatchbackPageFullyLoaded(){
+        // TODO a way to wait for the dropdown be clicked
+        wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(getInsideShadowDOM(carConfiguratorShadowDOM(),fuelFilter())));
+    }
     public void selectDiesel(){
         wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(getInsideShadowDOM(carConfiguratorShadowDOM(),fuelFilter()))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(getInsideShadowDOM(carConfiguratorShadowDOM(),dieselFuelCheckbox()))).click();
+        getInsideShadowDOM(carConfiguratorShadowDOM(),fuelFilter()).click();
+        getInsideShadowDOM(carConfiguratorShadowDOM(),dieselFuelCheckbox()).click();
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
     }
-
 
     // Locators
     public final By carConfiguratorShadowDOM(){
