@@ -17,8 +17,6 @@ import static utils.BaseUtils.driver;
 
 public class BasePage {
 
-    public WebDriverWait wait;
-    
     public static String url() {
         return "https://www.mercedes-benz.co.uk";
     }
@@ -51,23 +49,6 @@ public class BasePage {
         action.moveToElement(ele).perform();
     }
 
-    // Take ScreenShot
-    public void takeScreenshot() {
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        TakesScreenshot scrShot = ((TakesScreenshot)driver);
-        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        File DestFile = new File("src/test/java/resources/screenshot.jpg");
-        try {
-            FileUtils.copyFile(SrcFile, DestFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /**
      * This function will move to the element before take a screenshot
      * @param element target element to scroll before take a screenshot
@@ -85,7 +66,7 @@ public class BasePage {
     }
 
     /**
-     * This function will scroll to the element
+     * This function will scroll to the element using JavaScript
      * @param element target element to scroll
      */
     public void scrollToElement(WebElement element) {
@@ -131,6 +112,10 @@ public class BasePage {
         return prices;
     }
 
+    /**
+     * This function will receive an arraylist and get the lower and higher price and save to a file
+     * @param prices array list with prices
+     */
     public void saveHighAndLowPricesToFile(ArrayList<String> prices) {
         int length = prices.size();
         String lowerPrice = prices.get(0);

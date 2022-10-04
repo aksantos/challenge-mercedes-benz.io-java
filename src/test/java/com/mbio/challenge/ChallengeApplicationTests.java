@@ -10,7 +10,7 @@ import utils.BaseUtils;
 @SpringBootTest
 class ChallengeApplicationTests extends BasePage {
 
-	AClassHatchbackPage aClassConfigurator = new AClassHatchbackPage();
+	AClassHatchbackPage aClassHatchback = new AClassHatchbackPage();
 	@Test
 	void validateAClassPriceWithChrome() {
 		BaseUtils.launchChrome(url());
@@ -18,9 +18,10 @@ class ChallengeApplicationTests extends BasePage {
 		selectHatchbacksModel();
 		hoverOverAClassHatchback();
 		selectBuildYourCarAClassHatchBack();
-		aClassConfigurator.selectDiesel();
-		takeScreenshot(getInsideShadowDOM(aClassConfigurator.carConfiguratorShadowDOM(),aClassConfigurator.fuelFilter()));
-		aClassConfigurator.saveHighAndLowerAClassHatchbacksPricesToFile();
+		aClassHatchback.selectDiesel();
+		aClassHatchback.takeCarsScreenshot();
+		aClassHatchback.validatePrices();
+		aClassHatchback.saveHighAndLowerPricesToFile();
 		BaseUtils.closeBrowser();
 	}
 	@Test
@@ -30,9 +31,10 @@ class ChallengeApplicationTests extends BasePage {
 		selectHatchbacksModel();
 		hoverOverAClassHatchback();
 		selectBuildYourCarAClassHatchBack();
-		aClassConfigurator.selectDiesel();
-		takeScreenshot(getInsideShadowDOM(aClassConfigurator.carConfiguratorShadowDOM(),aClassConfigurator.fuelFilter()));
-		aClassConfigurator.saveHighAndLowerAClassHatchbacksPricesToFile();
+		aClassHatchback.selectDiesel();
+		aClassHatchback.takeCarsScreenshot();
+		aClassHatchback.validatePrices();
+		aClassHatchback.saveHighAndLowerPricesToFile();
 		BaseUtils.closeBrowser();
 	}
 }
