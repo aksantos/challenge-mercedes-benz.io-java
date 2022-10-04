@@ -1,10 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.io.IOException;
 
 import static utils.BaseUtils.driver;
 
@@ -21,6 +23,7 @@ public class BasePage {
     }
 
     public void selectHatchbacksModel() {
+        scrollToElement(getInsideShadowDOM(modelShadowDOM(), hatchbacksModel()));
         getInsideShadowDOM(modelShadowDOM(), hatchbacksModel()).click();
     }
 
@@ -36,6 +39,33 @@ public class BasePage {
         WebElement ele = getInsideShadowDOM(shadowDOM, element);
         Actions action = new Actions(driver);
         action.moveToElement(ele).perform();
+    }
+
+    // Take ScreenShot
+    public void takeScreenshot() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        TakesScreenshot scrShot = ((TakesScreenshot)driver);
+        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+        File DestFile = new File("src/test/java/resources/screenshot.jpg");
+        try {
+            FileUtils.copyFile(SrcFile, DestFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Scroll to the element to be interacted with
+    public void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Get inside Shadow DOMs
@@ -55,19 +85,19 @@ public class BasePage {
         return By.cssSelector("cmm-cookie-banner");
     }
     public final By cookieButton() {
-        return By.cssSelector("cmm-buttons-wrapper:nth-child(3) > div:nth-child(1) > div:nth-child(1) > button:nth-child(2)");
+        return By.cssSelector("button[data-test='handle-accept-all-button']");
     }
     public final By modelShadowDOM() {
         return By.cssSelector("dh-io-vmos");
     }
     public final By hatchbacksModel() {
-        return By.cssSelector("section:nth-child(2) > button:nth-child(2) > span:nth-child(1)");
+        return By.cssSelector("section:nth-child(2) > button:nth-child(2)");
     }
     public final By aClassHatchback() {
-        return By.cssSelector("section:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1)");
+        return By.cssSelector("section:nth-child(2) > div > div > div");
     }
     public final By buildYourCarAClassHatchback() {
-        return By.cssSelector("section:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > wb-popover:nth-child(2) > ul:nth-child(1) > li:nth-child(2) > a:nth-child(1)");
+        return By.cssSelector("wb-popover:nth-child(2) > ul > li:nth-child(2)");
     }
 
 }

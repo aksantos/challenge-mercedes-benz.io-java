@@ -8,20 +8,16 @@ import static utils.BaseUtils.driver;
 
 public class AClassHatchbackPage extends BasePage{
 
-    public void waitAClassHatchbackPageFullyLoaded(){
-        // TODO a way to wait for the dropdown be clicked
-        wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(getInsideShadowDOM(carConfiguratorShadowDOM(),fuelFilter())));
-    }
     public void selectDiesel(){
         wait = new WebDriverWait(driver, 10);
+        scrollToElement(getInsideShadowDOM(carConfiguratorShadowDOM(),motorizationFilter()));
+        // open dropdown
         getInsideShadowDOM(carConfiguratorShadowDOM(),fuelFilter()).click();
+        wait.until(ExpectedConditions.visibilityOf(getInsideShadowDOM(carConfiguratorShadowDOM(), fuelDropdownOpened())));
+        // select diesel fuel
         getInsideShadowDOM(carConfiguratorShadowDOM(),dieselFuelCheckbox()).click();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        // close dropdown
+        getInsideShadowDOM(carConfiguratorShadowDOM(),fuelFilter()).click();
     }
 
     // Locators
@@ -33,5 +29,11 @@ public class AClassHatchbackPage extends BasePage{
     }
     public final By dieselFuelCheckbox() {
         return By.cssSelector("wb-checkbox-control:nth-child(1) > label:nth-child(1)");
+    }
+    public final By fuelDropdownOpened() {
+        return By.cssSelector("button[aria-expanded='true']");
+    }
+    public final By motorizationFilter() {
+        return By.cssSelector("cc-motorization-filters");
     }
 }
