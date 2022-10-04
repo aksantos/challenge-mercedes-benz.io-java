@@ -12,14 +12,27 @@ class ChallengeApplicationTests extends BasePage {
 
 	AClassHatchbackPage aClassConfigurator = new AClassHatchbackPage();
 	@Test
-	void validateAClassPrice() {
+	void validateAClassPriceWithChrome() {
 		BaseUtils.launchChrome(url());
 		agreeAllCookies();
 		selectHatchbacksModel();
 		hoverOverAClassHatchback();
 		selectBuildYourCarAClassHatchBack();
 		aClassConfigurator.selectDiesel();
-		takeScreenshot();
+		takeScreenshot(getInsideShadowDOM(aClassConfigurator.carConfiguratorShadowDOM(),aClassConfigurator.fuelFilter()));
+		aClassConfigurator.saveHighAndLowerAClassHatchbacksPricesToFile();
+		BaseUtils.closeBrowser();
+	}
+	@Test
+	void validateAClassPriceWithEdge() {
+		BaseUtils.launchEdge(url());
+		agreeAllCookies();
+		selectHatchbacksModel();
+		hoverOverAClassHatchback();
+		selectBuildYourCarAClassHatchBack();
+		aClassConfigurator.selectDiesel();
+		takeScreenshot(getInsideShadowDOM(aClassConfigurator.carConfiguratorShadowDOM(),aClassConfigurator.fuelFilter()));
+		aClassConfigurator.saveHighAndLowerAClassHatchbacksPricesToFile();
 		BaseUtils.closeBrowser();
 	}
 }

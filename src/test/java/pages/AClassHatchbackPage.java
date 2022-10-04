@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+
 import static utils.BaseUtils.driver;
 
 public class AClassHatchbackPage extends BasePage{
@@ -18,6 +20,14 @@ public class AClassHatchbackPage extends BasePage{
         getInsideShadowDOM(carConfiguratorShadowDOM(),dieselFuelCheckbox()).click();
         // close dropdown
         getInsideShadowDOM(carConfiguratorShadowDOM(),fuelFilter()).click();
+    }
+
+    public ArrayList<String> getAClassHatchbackPrices() {
+        return getPrices(getInsideShadowDOM(carConfiguratorShadowDOM(),motorizationComparison()));
+    }
+
+    public void saveHighAndLowerAClassHatchbacksPricesToFile() {
+        saveHighAndLowPricesToFile(getAClassHatchbackPrices());
     }
 
     // Locators
@@ -35,5 +45,8 @@ public class AClassHatchbackPage extends BasePage{
     }
     public final By motorizationFilter() {
         return By.cssSelector("cc-motorization-filters");
+    }
+    public final By motorizationComparison() {
+        return By.cssSelector(".cc-motorization-comparison-wrapper");
     }
 }
