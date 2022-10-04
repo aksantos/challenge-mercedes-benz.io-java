@@ -1,11 +1,20 @@
 package pages;
 
 import org.openqa.selenium.By;
-
+import org.junit.Assert;
 import java.util.ArrayList;
+import static utils.BaseUtils.driver;
 
 public class AClassHatchbackPage extends BasePage{
 
+    public void validatePageTitle() {
+        try {
+            Thread.sleep(800);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        Assert.assertTrue(driver.getTitle().contains("A-Class"));
+    }
     public void selectDiesel(){
         scrollToElement(getInsideShadowDOM(carConfiguratorShadowDOM(),motorizationFilter()));
         // open dropdown
@@ -38,10 +47,8 @@ public class AClassHatchbackPage extends BasePage{
         int length = prices.size();
         int lowerPrice = Integer.parseInt(prices.get(0).replace("£","").replace(",",""));
         int higherPrice = Integer.parseInt(prices.get(length - 1).replace("£","").replace(",",""));
-        System.out.println("lower " + lowerPrice);
-        System.out.println("higher " + higherPrice);
-        assert lowerPrice > lower;
-        assert higherPrice < higher;
+        Assert.assertTrue(lowerPrice > lower);
+        Assert.assertTrue(higherPrice < higher);
     }
 
     // Locators

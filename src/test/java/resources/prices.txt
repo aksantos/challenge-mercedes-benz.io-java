@@ -1,2 +1,2 @@
-Lower Price: Â£33,600
-Higher Price: Â£39,000
+Lower Price: £33,600
+Higher Price: £39,000

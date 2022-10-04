@@ -18,6 +18,7 @@ class ChallengeApplicationTests extends BasePage {
 		selectHatchbacksModel();
 		hoverOverAClassHatchback();
 		selectBuildYourCarAClassHatchBack();
+		aClassHatchback.validatePageTitle();
 		aClassHatchback.selectDiesel();
 		aClassHatchback.takeCarsScreenshot();
 		aClassHatchback.validatePrices(15000, 60000);
@@ -31,6 +32,7 @@ class ChallengeApplicationTests extends BasePage {
 		selectHatchbacksModel();
 		hoverOverAClassHatchback();
 		selectBuildYourCarAClassHatchBack();
+		aClassHatchback.validatePageTitle();
 		aClassHatchback.selectDiesel();
 		aClassHatchback.takeCarsScreenshot();
 		aClassHatchback.validatePrices(15000, 60000);

@@ -3,8 +3,6 @@ package pages;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
