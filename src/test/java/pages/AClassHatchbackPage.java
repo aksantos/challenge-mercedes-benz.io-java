@@ -27,15 +27,21 @@ public class AClassHatchbackPage extends BasePage{
     public void takeCarsScreenshot() {
         takeScreenshot(getInsideShadowDOM(carConfiguratorShadowDOM(),fuelFilter()));
     }
-    public void validatePrices() {
+
+    /**
+     * This function will validate if the prices in the array list are between lower and higher
+     * @param lower lower price that should be
+     * @param higher higher price that should be
+     */
+    public void validatePrices(int lower, int higher) {
         ArrayList<String> prices = getPrices();
         int length = prices.size();
         int lowerPrice = Integer.parseInt(prices.get(0).replace("£","").replace(",",""));
         int higherPrice = Integer.parseInt(prices.get(length - 1).replace("£","").replace(",",""));
         System.out.println("lower " + lowerPrice);
         System.out.println("higher " + higherPrice);
-        assert lowerPrice > 15000;
-        assert higherPrice < 60000;
+        assert lowerPrice > lower;
+        assert higherPrice < higher;
     }
 
     // Locators

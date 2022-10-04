@@ -20,7 +20,7 @@ class ChallengeApplicationTests extends BasePage {
 		selectBuildYourCarAClassHatchBack();
 		aClassHatchback.selectDiesel();
 		aClassHatchback.takeCarsScreenshot();
-		aClassHatchback.validatePrices();
+		aClassHatchback.validatePrices(15000, 60000);
 		aClassHatchback.saveHighAndLowerPricesToFile();
 		BaseUtils.closeBrowser();
 	}
@@ -33,7 +33,7 @@ class ChallengeApplicationTests extends BasePage {
 		selectBuildYourCarAClassHatchBack();
 		aClassHatchback.selectDiesel();
 		aClassHatchback.takeCarsScreenshot();
-		aClassHatchback.validatePrices();
+		aClassHatchback.validatePrices(15000, 60000);
 		aClassHatchback.saveHighAndLowerPricesToFile();
 		BaseUtils.closeBrowser();
 	}
